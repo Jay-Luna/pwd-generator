@@ -18,33 +18,46 @@ var password = "";
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Take all criteria to generate password
+// Method to generate a random password based on a selected criteria
 function generatePassword() {
   // var uppercase = confirm("Your password should have an uppercase letter! Click OK to continue");
   // var keyLength = prompt("Password must be between 8 and 128 characters! Click OK to continue");
 
+  // characters needed to generate password string
   var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
   var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
   var specialChars = "!@#$%^&*()?.<\>|=+:;,[-_]";
   var numericValues = "0123456789";
   var allCharOptions = [];
 
-  if (hasUpper) { allCharOptions += uppercaseChars; }
-  if (hasLower) { allCharOptions += lowercaseChars }
-  if (hasSpecialChar) { allCharOptions += specialChars; }
-  if (hasNumeric) { allCharOptions += numericValues; }
+  // based on user selection add criteria options to allCharOptions array
+  if (hasUpper) {
+    allCharOptions += uppercaseChars;
+  }
+  if (hasLower) {
+    allCharOptions += lowercaseChars;
+  }
+  if (hasSpecialChar) {
+    allCharOptions += specialChars;
+  }
+  if (hasNumeric) {
+    allCharOptions += numericValues;
+  }
 
-  // create a password that is length of 8
+  // generate a password with the length criteria
   for (var i = 0; i < length; i++) {
+    // get random position in allCharOptions array
     let randomIndex = [Math.floor(Math.random() * allCharOptions.length)];
+    // add random value to password getting generated
     password = password + allCharOptions[randomIndex];
   }
 }
 
 // Write password to the #password input
 function writePassword() {
-  password = "";
-  generatePassword();
+  password = ""; // clears password box initially
+
+  generatePassword(); // calls generatePassword function
 
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
