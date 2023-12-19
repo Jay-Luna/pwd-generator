@@ -29,10 +29,14 @@ function generatePrompts() {
   // if cancel was selected, exit logic
   if (length == null) {
     exit;
+  } else if(isNaN(length)) {
+    // if password length is not a number
+    alert("Password length is not a valid number.");
+    generatePrompts();
   } else if (length < 8 || length > 128) {
     // if password length is not between 8 & 128
     // then show alert and show length prompt again.
-    alert("Password length is not a valid input.");
+    alert("Password length is not between 8-128.");
     generatePrompts();
   }
 
