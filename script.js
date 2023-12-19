@@ -10,7 +10,7 @@
 
 var length = 8;
 var hasUpper = true;
-var hasLower = false;
+var hasLower = true;
 var hasNumeric = true;
 var hasSpecialChar = true;
 var password = "";
@@ -23,15 +23,27 @@ function generatePassword() {
   // var uppercase = confirm("Your password should have an uppercase letter! Click OK to continue");
   // var keyLength = prompt("Password must be between 8 and 128 characters! Click OK to continue");
 
+  var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
+  var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+  var specialChars = "!@#$%^&*()?.<\>|=+:;,[-_]";
+  var numericValues = "0123456789";
+  var allCharOptions = [];
+
+  if (hasUpper) { allCharOptions += uppercaseChars; }
+  if (hasLower) { allCharOptions += lowercaseChars }
+  if (hasSpecialChar) { allCharOptions += specialChars; }
+  if (hasNumeric) { allCharOptions += numericValues; }
+
   // create a password that is length of 8
   for (var i = 0; i < length; i++) {
+    let randomIndex = [Math.floor(Math.random() * allCharOptions.length)];
+    password = password + allCharOptions[randomIndex];
   }
-
-  password = "dklf343";
 }
 
 // Write password to the #password input
 function writePassword() {
+  password = "";
   generatePassword();
 
   var passwordText = document.querySelector("#password");
