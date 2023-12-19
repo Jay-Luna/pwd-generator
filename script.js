@@ -18,7 +18,7 @@ function confirmCharcterTypes() {
   // if all criteria are not selected then show alert and show prompts again.
   if (!hasUpper && !hasLower && !hasNumeric && !hasSpecialChar) {
     alert("Criteria not meet. Must include at least 1 character type.");
-    generatePrompts();
+    confirmCharcterTypes();
   }
 }
 
