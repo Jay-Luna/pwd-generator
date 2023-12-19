@@ -9,6 +9,19 @@ var password = "";
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+function confirmCharcterTypes() {
+  hasUpper = confirm("Click 'OK' to include uppercase letters or 'Cancel' to not include.");
+  hasLower = confirm("Click 'OK' to include lowercase letters or 'Cancel' to not include.");
+  hasNumeric = confirm("Click 'OK' to include numeric characters or 'Cancel' to not include.");
+  hasSpecialChar = confirm("Click 'OK' to include special characters or 'Cancel' to not include.");
+
+  // if all criteria are not selected then show alert and show prompts again.
+  if (!hasUpper && !hasLower && !hasNumeric && !hasSpecialChar) {
+    alert("Criteria not meet. Must include at least 1 character type.");
+    generatePrompts();
+  }
+}
+
 // Show user criteria prompts pop-up
 function generatePrompts() {
   length = prompt("Password length must be between 8 and 128 characters:");
@@ -23,16 +36,7 @@ function generatePrompts() {
     generatePrompts();
   }
 
-  hasUpper = confirm("Click 'OK' to include uppercase letters or 'Cancel' to not include.");
-  hasLower = confirm("Click 'OK' to include lowercase letters or 'Cancel' to not include.");
-  hasNumeric = confirm("Click 'OK' to include numeric characters or 'Cancel' to not include.");
-  hasSpecialChar = confirm("Click 'OK' to include special characters or 'Cancel' to not include.");
-
-  // if all criteria are not selected then show alert and show prompts again.
-  if (!hasUpper && !hasLower && !hasNumeric && !hasSpecialChar) {
-    alert("Criteria not meet. Must include at least 1 character type.");
-    generatePrompts();
-  }
+  confirmCharcterTypes();
 }
 
 // Method to generate a random password based on a selected criteria
