@@ -1,14 +1,5 @@
-// Assignment code here
-
-
-/* peseudo 
-1. click button to generate prompts
-2. select which criteria to include when prompted for password criteria
-3.create a prompt for length of password
-4. choose a length of at least 8 characters & no more than 128 characters
-*/
-
-var length = 8;
+// Default values for criteria variables
+var length = 0;
 var hasUpper = true;
 var hasLower = true;
 var hasNumeric = true;
@@ -18,11 +9,17 @@ var password = "";
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+// Show user criteria prompts pop-up
+function generatePrompts() {
+  length = prompt("Password length must be between 8 and 128 characters:");
+  hasUpper = confirm("Click 'OK' to include uppercase letters or 'Cancel' to not include.");
+  hasLower = confirm("Click 'OK' to include lowercase letters or 'Cancel' to not include.");
+  hasNumeric = confirm("Click 'OK' to include numeric characters or 'Cancel' to not include.");
+  hasSpecialChar = confirm("Click 'OK' to include special characters or 'Cancel' to not include.");
+}
+
 // Method to generate a random password based on a selected criteria
 function generatePassword() {
-  // var uppercase = confirm("Your password should have an uppercase letter! Click OK to continue");
-  // var keyLength = prompt("Password must be between 8 and 128 characters! Click OK to continue");
-
   // characters needed to generate password string
   var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
   var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
@@ -57,6 +54,7 @@ function generatePassword() {
 function writePassword() {
   password = ""; // clears password box initially
 
+  generatePrompts(); // calls generatePrompts function
   generatePassword(); // calls generatePassword function
 
   var passwordText = document.querySelector("#password");
